@@ -4,7 +4,4 @@ export default class Class{
     teacherName:string;
     description: string;
     date:string;
-
-
-
 }

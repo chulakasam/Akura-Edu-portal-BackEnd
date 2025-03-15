@@ -4,6 +4,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import classRoutes from "./routes/class-routes";
+import studentRoutes from "./routes/student-routes";
 
 
 const app = express();
@@ -26,7 +27,7 @@ app.use('/',(req,res,next)=>{
 
 
 app.use('/class', classRoutes);
-
+app.use('/student',studentRoutes);
 
 app.use('*', (req, res) => {
     res.status(404).json({ message: 'Not Found' });
