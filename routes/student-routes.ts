@@ -1,6 +1,7 @@
 import express from "express";
 import {StudentAdd, StudentView} from "../database/mongoose-student-data-store";
 
+
 const router = express.Router();
 
 router.post('/add',async (req,res)=>{
@@ -21,7 +22,9 @@ router.get('/view',async(req, res)=>{
     }catch (error){
         console.log('error fetching students',error);
     }
-})
+});
+
+
 
 
 export  default router;

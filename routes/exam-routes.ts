@@ -1,5 +1,5 @@
 import express from "express";
-import {ExamAdd, ExamView} from "../database/mongoose-exam-data-store";
+import {ExamAdd, ExamDelete, ExamView} from "../database/mongoose-exam-data-store";
 import Exam from "../model/Exam";
 
 const router = express.Router();
@@ -20,6 +20,16 @@ router.get('/view',async (req, res) => {
         res.json(loading_exam);
     }catch (error){
         console.log('error fetching exam',error);
+    }
+});
+
+router.delete('/delete/:examName',async (req, res)=>{
+    const examName = req.params.examName;
+    try{
+        const selected_exam = await ExamDelete(examName);
+        res.json(selected_exam);
+    }catch (error) {
+        console.log('error deleting exam',error);
     }
 });
 

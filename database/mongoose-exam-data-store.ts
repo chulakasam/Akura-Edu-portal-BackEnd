@@ -27,3 +27,15 @@ export async function ExamView(e:Exam){
         console.log('error fetching exam',error);
     }
 }
+
+export async function ExamDelete(examName:string){
+    try{
+        const deleting_exam=await ExamModel.deleteOne({
+            examName:examName
+        });
+        console.log('exam deleted successfully',deleting_exam);
+        return deleting_exam;
+    }catch (err) {
+        console.log('error deleting exam',err);
+    }
+}
