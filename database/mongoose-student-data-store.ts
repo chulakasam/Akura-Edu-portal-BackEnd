@@ -19,3 +19,14 @@ export async function StudentAdd(new_student:Student){
             console.log("Error Adding Student :",err);
         }
 }
+
+export async function StudentView(students:Student){
+    try {
+        const loadingStudents = await StudentModel.find();
+        console.log('loading all students',loadingStudents);
+        return loadingStudents;
+    }catch (err){
+        console.log('error fetching students',err);
+    }
+
+}
