@@ -5,6 +5,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import classRoutes from "./routes/class-routes";
 import studentRoutes from "./routes/student-routes";
+import examRoutes from "./routes/exam-routes";
 
 
 const app = express();
@@ -28,13 +29,14 @@ app.use('/',(req,res,next)=>{
 
 app.use('/class', classRoutes);
 app.use('/student',studentRoutes);
+app.use('/exam',examRoutes);
 
 app.use('*', (req, res) => {
     res.status(404).json({ message: 'Not Found' });
 });
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
 });
