@@ -1,6 +1,7 @@
 import express from "express";
 
-import {ClassAdd} from "../database/mongoose-class-data-store";
+import {ClassAdd, ClassView} from "../database/mongoose-class-data-store";
+import {addAbortSignal} from "node:stream";
 
 const router = express.Router();
 
@@ -15,6 +16,15 @@ router.post('/add',async(req,res)=>{
     }
 })
 
+router.get('/view',async (req, res) => {
+    const all_classes = req.body;
+    try{
+     const loadAllClass = await ClassView(all_classes);
+     res.json(loadAllClass);
+    }catch (error){
+        console.log('error fetching data',error);
+    }
+})
 
 
 

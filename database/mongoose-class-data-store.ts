@@ -18,3 +18,14 @@ export async function ClassAdd(c:Class) {
         console.log("Error Adding Class:", err);
     }
 }
+
+export async function ClassView(classes:Class){
+
+    try {
+        const loadingClasses = await ClassModel.find();
+        console.log('loading all classes',loadingClasses);
+        return loadingClasses;
+    }catch (err){
+        console.log('error fetching classes',err);
+    }
+}
