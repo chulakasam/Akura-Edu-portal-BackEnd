@@ -29,3 +29,15 @@ export async function ClassView(classes:Class){
         console.log('error fetching classes',err);
     }
 }
+
+export async function ClassDelete(className:string){
+    try{
+        const deleting_class=await ClassModel.deleteOne({
+            className: className
+        })
+        console.log('successfully deleted class',deleting_class);
+        return deleting_class;
+    }catch (err) {
+        console.log('error deleting class',err);
+    }
+}

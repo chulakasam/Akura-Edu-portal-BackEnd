@@ -1,6 +1,6 @@
 import express from "express";
 
-import {ClassAdd, ClassView} from "../database/mongoose-class-data-store";
+import {ClassAdd, ClassDelete, ClassView} from "../database/mongoose-class-data-store";
 import {addAbortSignal} from "node:stream";
 
 const router = express.Router();
@@ -26,7 +26,15 @@ router.get('/view',async (req, res) => {
     }
 })
 
-
+router.delete('/delete/:className',async (req,res)=>{
+    const className = req.params.className;
+    try {
+        const selected_class = await ClassDelete(className);
+        res.json(selected_class);
+    }catch (error){
+        console.log('error deleting class',error);
+    }
+})
 
 export  default router;
 
