@@ -18,3 +18,12 @@ export async function ExamAdd(e:Exam){
         console.log('error adding new Exam',err);
     }
 }
+export async function ExamView(e:Exam){
+    try {
+        const loading_exam = await ExamModel.find();
+        console.log('loading exam data successfully',loading_exam);
+        return loading_exam;
+    }catch (error) {
+        console.log('error fetching exam',error);
+    }
+}
