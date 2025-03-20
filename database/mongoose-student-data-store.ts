@@ -30,3 +30,15 @@ export async function StudentView(students:Student){
     }
 
 }
+
+export async function StudentDelete(email:string){
+    try {
+       const deleting_student=await StudentModel.deleteOne({
+            email:email
+        });
+       console.log('deleting student successfully',deleting_student);
+       return deleting_student;
+    }catch (err){
+        console.log('error deleting student',err);
+    }
+}

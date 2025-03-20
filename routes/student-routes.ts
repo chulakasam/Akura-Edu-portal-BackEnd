@@ -1,5 +1,5 @@
 import express from "express";
-import {StudentAdd, StudentView} from "../database/mongoose-student-data-store";
+import {StudentAdd, StudentDelete, StudentView} from "../database/mongoose-student-data-store";
 
 
 const router = express.Router();
@@ -24,6 +24,15 @@ router.get('/view',async(req, res)=>{
     }
 });
 
+router.delete('/delete/:email',async (req,res)=>{
+    const email = (req.params.email);
+    try {
+        const selected_student = await StudentDelete(email);
+        res.json(selected_student);
+    }catch (error){
+        console.log('error deleting student',error);
+    }
+})
 
 
 
