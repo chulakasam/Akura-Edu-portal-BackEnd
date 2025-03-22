@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import classRoutes from "./routes/class-routes";
 import studentRoutes from "./routes/student-routes";
 import examRoutes from "./routes/exam-routes";
+import examRegistrationRoutes from "./routes/exam-registration-routes";
 
 
 const app = express();
@@ -30,6 +31,7 @@ app.use('/',(req,res,next)=>{
 app.use('/class', classRoutes);
 app.use('/student',studentRoutes);
 app.use('/exam',examRoutes);
+app.use('/examRegistration',examRegistrationRoutes)
 
 app.use('*', (req, res) => {
     res.status(404).json({ message: 'Not Found' });
