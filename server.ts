@@ -7,6 +7,8 @@ import classRoutes from "./routes/class-routes";
 import studentRoutes from "./routes/student-routes";
 import examRoutes from "./routes/exam-routes";
 import examRegistrationRoutes from "./routes/exam-registration-routes";
+import examPaymentRoutes from "./routes/examPayment-routes";
+import classPaymentRoutes from "./routes/classPayment-routes";
 
 
 const app = express();
@@ -31,7 +33,9 @@ app.use('/',(req,res,next)=>{
 app.use('/class', classRoutes);
 app.use('/student',studentRoutes);
 app.use('/exam',examRoutes);
-app.use('/examRegistration',examRegistrationRoutes)
+app.use('/examRegistration',examRegistrationRoutes);
+app.use('/examPayment',examPaymentRoutes);
+app.use('/classPayment',classPaymentRoutes);
 
 app.use('*', (req, res) => {
     res.status(404).json({ message: 'Not Found' });
