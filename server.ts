@@ -9,8 +9,11 @@ import examRoutes from "./routes/exam-routes";
 import examRegistrationRoutes from "./routes/exam-registration-routes";
 import examPaymentRoutes from "./routes/examPayment-routes";
 import classPaymentRoutes from "./routes/classPayment-routes";
+import authRoutes from "./routes/auth-routes";
+import dotenv from "dotenv";
+import cors from 'cors';
 
-
+dotenv.config();
 const app = express();
 
 
@@ -21,13 +24,20 @@ mongoose.connect("mongodb://localhost:27017/akuraeduPortal")
 app.use(express.json());
 
 
-app.use('/',(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, content-type');
+// app.use('/',(req,res,next)=>{
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, content-type');
+//
+//     next();
+// })
 
-    next();
-})
+app.use(cors({
+    origin: 'http://localhost:5174',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 
 app.use('/class', classRoutes);
@@ -36,6 +46,7 @@ app.use('/exam',examRoutes);
 app.use('/examRegistration',examRegistrationRoutes);
 app.use('/examPayment',examPaymentRoutes);
 app.use('/classPayment',classPaymentRoutes);
+app.use('/auth',authRoutes);
 
 app.use('*', (req, res) => {
     res.status(404).json({ message: 'Not Found' });
